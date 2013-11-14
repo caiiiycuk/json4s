@@ -242,9 +242,9 @@ object Extraction {
       case "[]"    => JArray(Nil)
       case x @ _   =>
         if (value.charAt(0).isDigit) {
-          if (value.indexOf('.') == -1) JInt(BigInt(value))
+          if (value.indexOf('.') == -1) JInt(java.lang.Long.parseLong(value))
           else {
-            if (!useBigDecimalForDouble) JDouble(ParserUtil.parseDouble(value))
+            if (!useBigDecimalForDouble) JDouble(ParserUtil.parseDouble(value).floatValue())
             else JDecimal(BigDecimal(value))
           }
         }

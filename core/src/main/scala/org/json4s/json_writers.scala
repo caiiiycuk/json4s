@@ -244,7 +244,7 @@ private sealed trait JValueJsonWriter extends JsonWriter[JValue] {
 
   def long(value: Long): JsonWriter[JValue] = addNode(JInt(value))
 
-  def bigInt(value: BigInt): JsonWriter[JValue] = addNode(JInt(value))
+  def bigInt(value: BigInt): JsonWriter[JValue] = addNode(JInt(value.longValue()))
 
   def boolean(value: Boolean): JsonWriter[JValue] = addNode(JBool(value))
 
@@ -269,9 +269,9 @@ private sealed trait JDoubleAstJsonWriter extends JValueJsonWriter {
 
   def float(value: Float): JsonWriter[JValue] = addNode(JDouble(value))
 
-  def double(value: Double): JsonWriter[JValue] = addNode(JDouble(value))
+  def double(value: Double): JsonWriter[JValue] = addNode(JDouble(value.floatValue()))
 
-  def bigDecimal(value: BigDecimal): JsonWriter[JValue] = addNode(JDouble(value.doubleValue()))
+  def bigDecimal(value: BigDecimal): JsonWriter[JValue] = addNode(JDouble(value.floatValue()))
 }
 
 private sealed trait JDecimalAstJsonWriter extends JValueJsonWriter {

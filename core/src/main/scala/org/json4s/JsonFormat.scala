@@ -188,7 +188,7 @@ trait DefaultWriters {
   implicit object ByteWriter extends W[Byte](JInt(_))
   implicit object ShortWriter extends W[Short](JInt(_))
   implicit object LongWriter extends W[Long](JInt(_))
-  implicit object BigIntWriter extends W[BigInt](JInt(_))
+  implicit object BigIntWriter extends W[BigInt](l => JInt(l.longValue()))
   implicit object BooleanWriter extends W[Boolean](JBool(_))
   implicit object StringWriter extends W[String](JString(_))
   implicit def arrayWriter[T](implicit valueWriter: Writer[T], mf: Manifest[T]): Writer[Array[T]] = new Writer[Array[T]] {
@@ -208,8 +208,8 @@ trait DefaultWriters {
 
 trait DoubleWriters extends DefaultWriters {
   implicit object FloatWriter extends W[Float](JDouble(_))
-  implicit object DoubleWriter extends W[Double](JDouble(_))
-  implicit object BigDecimalWriter extends W[BigDecimal](d => JDouble(d.doubleValue))
+  implicit object DoubleWriter extends W[Double](d => JDouble(d.floatValue()))
+  implicit object BigDecimalWriter extends W[BigDecimal](d => JDouble(d.floatValue()))
 }
 
 trait BigDecimalWriters extends DefaultWriters {

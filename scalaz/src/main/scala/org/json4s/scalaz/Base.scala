@@ -42,7 +42,7 @@ trait Base { this: Types =>
       case x => UnexpectedJSONError(x, classOf[JInt]).failureNel
     }
 
-    def write(value: Int) = JInt(BigInt(value))
+    def write(value: Int) = JInt(value)
   }
 
   implicit def longJSON: JSON[Long] = new JSON[Long] {
@@ -51,7 +51,7 @@ trait Base { this: Types =>
       case x => UnexpectedJSONError(x, classOf[JInt]).failureNel
     }
 
-    def write(value: Long) = JInt(BigInt(value))
+    def write(value: Long) = JInt(value)
   }
 
   implicit def doubleJSON: JSON[Double] = new JSON[Double] {
@@ -60,7 +60,7 @@ trait Base { this: Types =>
       case x => UnexpectedJSONError(x, classOf[JDouble]).failureNel
     }
 
-    def write(value: Double) = JDouble(value)
+    def write(value: Double) = JDouble(value.floatValue())
   }
 
   implicit def stringJSON: JSON[String] = new JSON[String] {
@@ -78,7 +78,7 @@ trait Base { this: Types =>
       case x => UnexpectedJSONError(x, classOf[JInt]).failureNel
     }
 
-    def write(value: BigInt) = JInt(value)
+    def write(value: BigInt) = JInt(value.longValue())
   }
 
   implicit def jvalueJSON: JSON[JValue] = new JSON[JValue] {

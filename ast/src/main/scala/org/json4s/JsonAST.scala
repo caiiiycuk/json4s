@@ -173,16 +173,16 @@ object JsonAST {
     def values = s
   }
   trait JNumber
-  case class JDouble(num: Double) extends JValue with JNumber {
-    type Values = Double
+  case class JDouble(num: Float) extends JValue with JNumber {
+    type Values = Float
     def values = num
   }
   case class JDecimal(num: BigDecimal) extends JValue with JNumber {
     type Values = BigDecimal
     def values = num
   }
-  case class JInt(num: BigInt) extends JValue with JNumber {
-    type Values = BigInt
+  case class JInt(num: Long) extends JValue with JNumber {
+    type Values = Long
     def values = num
   }
   case class JBool(value: Boolean) extends JValue {

@@ -13,10 +13,10 @@ class JValueDeserializer(factory: TypeFactory, klass: Class[_]) extends JsonDese
 
     val value = jp.getCurrentToken match {
       case JsonToken.VALUE_NULL => JNull
-      case JsonToken.VALUE_NUMBER_INT => JInt(BigInt(jp.getText))
+      case JsonToken.VALUE_NUMBER_INT => JInt(java.lang.Long.parseLong(jp.getText))
       case JsonToken.VALUE_NUMBER_FLOAT =>
         if (ctxt.isEnabled(DeserializationFeature.USE_BIG_DECIMAL_FOR_FLOATS)) JDecimal(BigDecimal(jp.getDecimalValue))
-        else JDouble(jp.getDoubleValue)
+        else JDouble(jp.getDoubleValue.floatValue)
       case JsonToken.VALUE_STRING => JString(jp.getText)
       case JsonToken.VALUE_TRUE => JBool(true)
       case JsonToken.VALUE_FALSE => JBool(false)

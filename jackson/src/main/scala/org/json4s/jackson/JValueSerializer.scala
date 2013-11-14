@@ -7,7 +7,7 @@ import com.fasterxml.jackson.core.JsonGenerator
 class JValueSerializer extends JsonSerializer[JValue]{
   def serialize(value: JValue, json: JsonGenerator, provider: SerializerProvider) {
     value match {
-      case JInt(v) => json.writeNumber(v.bigInteger)
+      case JInt(v) => json.writeNumber(v)
       case JDouble(v) => json.writeNumber(v)
       case JDecimal(v) => json.writeNumber(v.bigDecimal)
       case JString(v) => json.writeString(v)

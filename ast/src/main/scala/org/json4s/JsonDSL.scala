@@ -34,16 +34,16 @@ trait BigDecimalMode { self: Implicits ⇒
 }
 object BigDecimalMode extends Implicits with BigDecimalMode
 trait DoubleMode { self: Implicits ⇒
-  implicit def double2jvalue(x: Double): JValue = JDouble(x)
-  implicit def float2jvalue(x: Float): JValue = JDouble(x.toDouble)
-  implicit def bigdecimal2jvalue(x: BigDecimal): JValue = JDouble(x.doubleValue())
+  implicit def double2jvalue(x: Double): JValue = JDouble(x.floatValue())
+  implicit def float2jvalue(x: Float): JValue = JDouble(x)
+  implicit def bigdecimal2jvalue(x: BigDecimal): JValue = JDouble(x.floatValue())
 
 }
 object DoubleMode extends Implicits with DoubleMode
 trait Implicits {
   implicit def int2jvalue(x: Int): JValue = JInt(x)
   implicit def long2jvalue(x: Long): JValue = JInt(x)
-  implicit def bigint2jvalue(x: BigInt): JValue = JInt(x)
+  implicit def bigint2jvalue(x: BigInt): JValue = JInt(x.longValue())
   implicit def double2jvalue(x: Double): JValue
   implicit def float2jvalue(x: Float): JValue
   implicit def bigdecimal2jvalue(x: BigDecimal): JValue
